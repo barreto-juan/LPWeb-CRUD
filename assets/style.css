@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font: 18px arial;
+    background-color: lightgrey;
+}
+
+.header{
+    padding: 0 0 0 10px;
+    height: 50px;
+
+    background-color: rgb(100, 100, 100);
+    color: #fff;
+    border-bottom: 1px solid #000;
+
+    display: flex;
+    align-items: center;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    height: 80vh;
+}
+
+.a a{
+    text-decoration: none;
+}
+
+.main-alunos:hover, .main-disciplinas:hover{
+    padding: 20px;
+
+    transition: all .4s;
+
+}
+
+.main-alunos, .main-disciplinas{
+    margin: 0;
+    padding: 10px;
+
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: grey;
+
+    transition: all .4s;
+}
+
+.logo-alunos img, .logo-disciplinas img{
+    width: 100px;
+    height: 100px;
+}
+
+.alunos, .disciplinas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.alunos ul, .disciplinas ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a{
+    text-decoration: none;
+    margin: 10px;
+}
+
+li{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    background-color: grey;
+    border: 1px solid #000;
+    color: #fff;
+    border-radius: 4px;
+}
