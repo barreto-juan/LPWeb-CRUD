@@ -1,7 +1,7 @@
 <?php
     
     function organiza(){
-        $pagina = "main.php";
+        $pagina = "login.php";
 
         if (isset($_GET['i'])){
             if ($_GET['i'] == "alunos") {

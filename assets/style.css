@@ -88,3 +88,14 @@ li{
     color: #fff;
     border-radius: 4px;
 }
+
+/*estilizacao login*/
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    text-align: center;
+    height: 80vh;
+}
