@@ -6,6 +6,8 @@
 body{
     font: 18px 'Montserrat', sans-serif;
     background-color: whitesmoke;
+
+    transition: all .4s;
 }
 
 .header{
@@ -96,10 +98,13 @@ li{
     border: 1px solid #000;
     color: #000;
     border-radius: 4px;
+    
+    transition: all .4s;
 }
 
 li:hover{
     box-shadow: 4px 4px 10px #000;
+    
     transition: all .4s;
 }
 
@@ -111,4 +116,38 @@ li:hover{
 
     text-align: center;
     height: 80vh;
+}
+
+hr{
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+#id, #nome, #cpf, #curso, #email, #telefone{
+    margin: 0;
+    padding: 8px;
+
+    width: 300px;
+
+    border: 1px solid #000;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-style: italic;
+
+    outline: 0;
+}
+
+input[type="submit"]{
+    margin: 10px;
+    padding: 8px;
+
+    width: 300px;
+
+    border: 1px solid #000;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-style: italic;
+
+    cursor: pointer;
+    outline: 0;
 }
