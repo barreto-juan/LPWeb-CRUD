@@ -1,4 +1,4 @@
-<div class="create-alunos">
+<div class="form create-alunos">
     <form action="" method="post">
         <h1>Cadastrar aluno</h1>
         <hr>
