@@ -1,5 +1,5 @@
 <div class="content">
-    <div class="a">
+    <div class="a-content">
         <a href="?i=alunos">
             <div class="main-alunos">
                 <div class="logo-alunos">
@@ -9,7 +9,7 @@
         </a>
     </div>
 
-    <div class="a">
+    <div class="a-content">
         <a href="?i=disciplinas">
             <div class="main-disciplinas">
                 <div class="logo-disciplinas">
@@ -19,7 +19,7 @@
         </a>
     </div>
 
-    <div class="a">
+    <div class="a-content">
         <a href="?i=relatorios">
             <div class="main-relatorios">
                 <div class="logo-relatorios">

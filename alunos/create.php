@@ -47,7 +47,7 @@
             $sql = mysqli_query($con, $query);
 
             if($sql){
-                echo"<script>alert(\"Usuário cadastrado com sucesso!\");</script>";
+                echo"<script>alert(\"Usuário cadastrado com sucesso!\"); window.location.back();</script>";
             }else{
                 echo"<script>alert(\"Não foi possível cadastrar esse usuário\");</script>";
             }

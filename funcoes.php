@@ -23,6 +23,8 @@
                         $pagina = "alunos/update.php";
                     }else if ($_GET['f'] == "delete") {
                         $pagina = "alunos/delete.php";
+                    }else if ($_GET['f'] == "all") {
+                        $pagina = "alunos/all.php";
                     }else{
                         $pagina = "alunos/index.php";
                     }

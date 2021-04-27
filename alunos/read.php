@@ -21,71 +21,74 @@
             exit;
         }else if($_POST['id']){
             $id = $_POST['id'];
-            $query = "SELECT * FROM alunos WHERE `id`=$id LIMIT 1";
+            $query = "SELECT * FROM alunos WHERE `id` LIKE \"%$id%\"";
             $sql = mysqli_query($con, $query);
             $valores = mysqli_fetch_assoc($sql);
             if ($valores <= 0) {
-                echo "<script>alert(\"Usuário '$id' não encontrado!\")</script>";
+                echo "<script>alert(\"Usuário ($id) não encontrado!\")</script>";
                 exit;
             }
         }elseif ($_POST['nome']) {
             $nome = $_POST['nome'];
-            $query = "SELECT * FROM alunos WHERE `nome`=\"$nome\" LIMIT 1";
+            $query = "SELECT * FROM alunos WHERE `nome` LIKE \"%$nome%\"";
             $sql = mysqli_query($con, $query);
-            $valores = mysqli_fetch_assoc($sql);
-            if ($valores <= 0) {
-                echo "<script>alert(\"Usuário '$nome' não encontrado!\")</script>";
-                exit;
-            }
-            
+            //$valores = mysqli_fetch_assoc($sql);
+
+            echo "
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    CPF
+                                </th>
+                                <th>
+                                    Curso
+                                </th>
+                                <th>
+                                    E-mail
+                                </th>
+                                <th>
+                                    Telefone
+                                </th>
+                            </tr>
+                        </thead>
+                ";
+                while($valores = mysqli_fetch_assoc($sql)){
+                    echo "
+                        <tbody>
+                            <tr>
+                                <th>
+                                    ".$valores['id']."
+                                </th>
+                                <td>
+                                    ".$valores['nome']."
+                                </td>
+                                <td>
+                                    ".$valores['cpf']."
+                                </td>
+                                <td>
+                                    ".$valores['curso']."
+                                </td>
+                                <td>
+                                    ".$valores['email']."
+                                </td>
+                                <td>
+                                    ".$valores['telefone']."
+                                </td>
+                            </tr> 
+                        </tbody>       
+                    ";
+                }
+            echo "</table>
+                </div>";
         }
-
-        echo "
-            <table border=\"1\">
-                <tr>
-                    <td>
-                        ID
-                    </td>
-                    <td>
-                        Nome
-                    </td>
-                    <td>
-                        CPF
-                    </td>
-                    <td>
-                        Curso
-                    </td>
-                    <td>
-                        E-mail
-                    </td>
-                    <td>
-                        Telefone
-                    </td>
-                </tr>
-                <tr>
-                    <td>".
-                        $valores['id']
-                    ."</td>
-                    <td>".
-                        $valores['nome']
-                    ."</td>
-                    <td>".
-                        $valores['cpf']
-                    ."</td>
-                    <td>".
-                        $valores['curso']
-                    ."</td>
-                    <td>".
-                        $valores['email']
-                    ."</td>
-                    <td>".
-                        $valores['telefone']
-                    ."</td>
-                </tr>
-
-            </table>
-        ";
-
     }
-
+            
 ?>
