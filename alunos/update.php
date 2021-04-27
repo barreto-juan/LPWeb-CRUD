@@ -2,6 +2,10 @@
     <form action="" method="post">
         <h1>Atualizar aluno</h1>
         <hr>
+
+        <label for="id">Id</label> <br>
+        <input type="text" name="id" id="id" required placeholder="Ex:. (Atualizar)Id"> <br>
+
         <label for="nome">Nome</label> <br>
         <input type="text" name="nome" id="nome" required placeholder="Ex:. (Atualizar)Jão da Silva"> <br>
 
@@ -34,23 +38,24 @@
         if (!$_POST['nome'] or !$_POST['cpf'] or !$_POST['curso'] or !$_POST['email'] or !$_POST['telefone']) {
             echo "<script>alert(\"Campos preenchidos incorretamente!\")</script>";
         }else{
+            $id = addslashes($_POST['id']);
             $nome = addslashes($_POST['nome']);
             $cpf = addslashes($_POST['cpf']);
             $curso = addslashes($_POST['curso']);
             $email = addslashes($_POST['email']);
             $telefone = addslashes($_POST['telefone']);
-
-            //echo "<script>alert(\"Nome=>$nome\\nCPF=>$cpf\\nCurso=>$curso\\nEmail=>$email\\nTelefone=>$telefone\");</script>"; 
             
 
-            $query = "UPDATE alunos SET `nome`='$nome', `cpf`='$cpf', `curso`='$curso', `email`=`$email`, `telefone`=`$telefone` WHERE `id`=$id;";
+            $query = "UPDATE alunos SET `nome`=\"$nome\", `cpf`=\"$cpf\", `curso`=\"$curso\", `email`=\"$email\", `telefone`=\"$telefone\" WHERE `id`=$id;";
             ;
             $sql = mysqli_query($con, $query);
 
-            if($sql and mysqli_affected_rows($con)){
-                echo"<script>alert(\"Usuário atualizado com sucesso!\");</script>";
+            if($sql && mysqli_affected_rows($con) == 0){
+                echo "<script>alert(\"Id não encontrado na tabela!\")</script>";
+            }elseif($sql && mysqli_affected_rows($con) > 0){
+                echo "<script>alert(\"Atualizado com sucesso!\")</script>";
             }else{
-                echo"<script>alert(\"Não foi possível atualizar esse usuário\");</script>";
+                echo "<script>alert(\"Não foi possível atualizar!\")</script>";
             }
 
         }
