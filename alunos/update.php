@@ -15,7 +15,7 @@
         
         <label for="curso">Curso</label> <br>
         <select name="curso" id="curso">
-            <option value="vazio">---</option>
+            <option value="">---</option>
             <option value="Técnico em Agropecuária">Técnico em Agropecuária</option>
             <option value="Técnico em Agrimensura">Técnico em Agrimensura</option>
             <option value="Técnico em Alimentos">Técnico em Alimentos</option>

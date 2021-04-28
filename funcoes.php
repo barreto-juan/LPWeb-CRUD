@@ -39,20 +39,22 @@
                         $pagina = "disciplinas/update.php";
                     }else if ($_GET['f'] == "delete") {
                         $pagina = "disciplinas/delete.php";
+                    }else if ($_GET['f'] == "all") {
+                        $pagina = "disciplinas/all.php";
                     }else{
                         $pagina = "disciplinas/index.php";
                     }
                 }
 
                 if (isset($_GET['i']) and $_GET['i'] == "relatorios") {
-                    if ($_GET['f'] == "create") {
-                        $pagina = "relatorios/create.php";
-                    }else if ($_GET['f'] == "read") {
-                        $pagina = "relatorios/read.php";
-                    }else if ($_GET['f'] == "update") {
-                        $pagina = "relatorios/update.php";
-                    }else if ($_GET['f'] == "delete") {
-                        $pagina = "relatorios/delete.php";
+                    if ($_GET['f'] == "turmas") {
+                        $pagina = "relatorios/turmas.php";
+                    }else if ($_GET['f'] == "boletim") {
+                        $pagina = "relatorios/boletim.php";
+                    }else if ($_GET['f'] == "des_notas") {
+                        $pagina = "relatorios/des_notas.php";
+                    }else if ($_GET['f'] == "des_media") {
+                        $pagina = "relatorios/des_media.php";
                     }else{
                         $pagina = "relatorios/index.php";
                     }

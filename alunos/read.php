@@ -21,19 +21,13 @@
             exit;
         }else if($_POST['id']){
             $id = $_POST['id'];
-            $query = "SELECT * FROM alunos WHERE `id` LIKE \"%$id%\"";
+            $query = "SELECT * FROM alunos WHERE `id`=\"$id\"";
             $sql = mysqli_query($con, $query);
             $valores = mysqli_fetch_assoc($sql);
             if ($valores <= 0) {
-                echo "<script>alert(\"Usuário ($id) não encontrado!\")</script>";
+                echo "<script>alert(\"Discente ($nome) não encontrado!\")</script>";
                 exit;
             }
-        }elseif ($_POST['nome']) {
-            $nome = $_POST['nome'];
-            $query = "SELECT * FROM alunos WHERE `nome` LIKE \"%$nome%\"";
-            $sql = mysqli_query($con, $query);
-            //$valores = mysqli_fetch_assoc($sql);
-
             echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
@@ -59,9 +53,6 @@
                                 </th>
                             </tr>
                         </thead>
-                ";
-                while($valores = mysqli_fetch_assoc($sql)){
-                    echo "
                         <tbody>
                             <tr>
                                 <th>
@@ -84,9 +75,66 @@
                                 </td>
                             </tr> 
                         </tbody>       
-                    ";
-                }
-            echo "</table>
+                    </table>
+                </div>";
+
+        }elseif ($_POST['nome']) {
+            $nome = $_POST['nome'];
+            $query = "SELECT * FROM alunos WHERE `nome`=\"$nome\"";
+            $sql = mysqli_query($con, $query);
+            $valores = mysqli_fetch_assoc($sql);
+            if ($valores <= 0) {
+                echo "<script>alert(\"Discente ($nome) não encontrado!\")</script>";
+                exit;
+            }
+            echo "
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    CPF
+                                </th>
+                                <th>
+                                    Curso
+                                </th>
+                                <th>
+                                    E-mail
+                                </th>
+                                <th>
+                                    Telefone
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    ".$valores['id']."
+                                </th>
+                                <td>
+                                    ".$valores['nome']."
+                                </td>
+                                <td>
+                                    ".$valores['cpf']."
+                                </td>
+                                <td>
+                                    ".$valores['curso']."
+                                </td>
+                                <td>
+                                    ".$valores['email']."
+                                </td>
+                                <td>
+                                    ".$valores['telefone']."
+                                </td>
+                            </tr> 
+                        </tbody>       
+                    </table>
                 </div>";
         }
     }
