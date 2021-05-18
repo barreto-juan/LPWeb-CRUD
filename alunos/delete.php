@@ -14,6 +14,8 @@
     </form>
 </div>
 
+
+
 <?php
     if (isset($_POST['btn_del_aluno'])) {
         if (!$_POST['id'] and !$_POST['nome']) {
@@ -36,13 +38,9 @@
             if (!$sql) {
                 echo "<script>alert(\"Usuário '$nome' não encontrado!\")</script>";
                 exit;
-            }
-            
+            }   
         }
-
         echo "<script>alert(\"Usuário excluído com sucesso!\")</script>";
-        
-
     }
 
 ?>

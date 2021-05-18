@@ -5,7 +5,7 @@
         <hr>
 
         <label for="id">Id</label> <br>
-        <input type="text" name="id" id="id" placeholder="Ex:. 1"> <br>
+        <input type="number" name="id" id="id" placeholder="Ex:. 1"> <br>
 
         <label for="nome">Nome</label> <br>
         <input type="text" name="nome" id="nome" placeholder="Ex:. Técnico em Agrimensura"> <br>

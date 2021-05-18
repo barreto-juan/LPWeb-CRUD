@@ -40,16 +40,13 @@
             $email = addslashes($_POST['email']);
             $telefone = addslashes($_POST['telefone']);
 
-            //echo "<script>alert(\"Nome=>$nome\\nCPF=>$cpf\\nCurso=>$curso\\nEmail=>$email\\nTelefone=>$telefone\");</script>"; 
-            
-
             $query = "INSERT INTO alunos(`nome`, `cpf`, `curso`, `email`, `telefone`) VALUES(\"$nome\", \"$cpf\", \"$curso\", \"$email\", \"$telefone\")";
             $sql = mysqli_query($con, $query);
-
             if($sql){
-                echo"<script>alert(\"Usuário cadastrado com sucesso!\"); window.history.back();</script>";
+                echo"<script>alert(\"Usuário cadastrado com sucesso!\"); window.history.back(-2);</script>";
             }else{
                 echo"<script>alert(\"Não foi possível cadastrar esse usuário!\");</script>";
+                exit();
             }
 
         }
