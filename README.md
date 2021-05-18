@@ -5,4 +5,4 @@ Abaixo você encontra informações para rodar esta aplicação em sua máquina.
 Enfim, execute os passos abaixo:
 1. Clone o repositório em sua máquina, na raiz do servidor ```(C:/wamp/www/ ou C:/xampp/htdocs/, por exemplo)```
 2. Importe o ```crud.sql``` em seu banco de dados ```(127.0.0.1/phpMyAdmin, por exemplo)```
-3. Continua...
+3. Continua... bla bla bla
