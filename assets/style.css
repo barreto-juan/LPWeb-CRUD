@@ -137,7 +137,7 @@ hr{
 }
 
 /******INPUT******/
-#id, #nome, #cpf, #curso, #email, #telefone{
+#id, #nome, #cpf, #semestre, #carga, #turma, #curso, #email, #telefone{
     margin: 0;
     padding: 8px;
 
@@ -170,7 +170,7 @@ input[type="submit"]{
     outline: 0;
 }
 
-#id:hover, #nome:hover, #cpf:hover, #curso:hover, #email:hover, #telefone:hover, input[type="submit"]:hover{
+#id:hover, #nome:hover, #cpf:hover, #semestre:hover, #turma:hover, #curso:hover, #carga:hover, #email:hover, #telefone:hover, input[type="submit"]:hover{
     background-color: rgb(240, 240, 240);
 }
 

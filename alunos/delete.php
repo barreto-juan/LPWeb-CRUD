@@ -2,13 +2,10 @@
     <form action="" method="post">
         <h1>Excluir aluno</h1>
         <hr>
-        <h4>Digite o id ou o nome do aluno para excluir</h4>
+        <h4>Digite o Id do aluno para excluir</h4>
 
         <label for="id">Id</label> <br>
-        <input type="number" name="id" id="id" placeholder="Ex:. 1"> <br>
-
-        <label for="nome">Nome</label> <br>
-        <input type="text" name="nome" id="nome" placeholder="Ex:. Jão da Silva"> <br>
+        <input type="number" name="id" id="id" placeholder="Ex:. 404"> <br>
         
         <input type="submit" name="btn_del_aluno" value="Excluir">
     </form>
@@ -18,29 +15,19 @@
 
 <?php
     if (isset($_POST['btn_del_aluno'])) {
-        if (!$_POST['id'] and !$_POST['nome']) {
-            echo "<script>alert(\"Campos vazios, preencha pelo menos um!\")</script>";
-            exit;
-        }else if($_POST['id']){
+        if (!$_POST['id']) {
+            echo "<script>alert(\"Campo(s) preenchido(s) inorretamente!\")</script>";
+            exit();
+        }else {
             $id = $_POST['id'];
-            $query = "DELETE FROM alunos WHERE `id`=$id";
-            $sql = mysqli_query($con, $query);
+            $query = "DELETE FROM alunos WHERE `id`=\"$id\"";
+            $sql = $con->query($query) or die($con->error);
             
             if (!$sql) {
-                echo "<script>alert(\"Usuário '$id' não encontrado!\")</script>";
-                exit;
-            }
-        }elseif ($_POST['nome']) {
-            $nome = $_POST['nome'];
-            $query = "DELETE FROM alunos WHERE `nome`=\"$nome\"";
-            $sql = mysqli_query($con, $query);
-            
-            if (!$sql) {
-                echo "<script>alert(\"Usuário '$nome' não encontrado!\")</script>";
-                exit;
+                echo "<script>alert(\"Aluno com id ($id) não pode ser encontrado!\")</script>";
+                exit();
             }   
         }
-        echo "<script>alert(\"Usuário excluído com sucesso!\")</script>";
+        echo "<script>alert(\"Aluno excluído com sucesso!\")</script>";
     }
-
 ?>

@@ -2,10 +2,7 @@
     <form action="" method="post">
         <h1>Pesquisar aluno</h1>
         <hr>
-        <h4>Digite o id ou o nome do aluno</h4>
-
-        <label for="id">Id</label> <br>
-        <input type="number" name="id" id="id" placeholder="EX:. 1"> <br>
+        <h4>Digite o nome do aluno</h4>
 
         <label for="nome">Nome</label> <br>
         <input type="text" name="nome" id="nome" placeholder="Ex:. Jão da Silva"> <br>
@@ -16,19 +13,20 @@
 
 <?php
     if (isset($_POST['btn_ler_alunos'])) {
-        if (!$_POST['id'] and !$_POST['nome']) {
-            echo "<script>alert(\"Campos vazios, preencha pelo menos um!\")</script>";
+        if (!$_POST['nome']) {
+            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\")</script>";
             exit;
-        }else if($_POST['id']){
-            $id = $_POST['id'];
-            $query = "SELECT * FROM alunos WHERE `id`=\"$id\"";
-            $sql = mysqli_query($con, $query);
-            $valores = mysqli_fetch_assoc($sql);
-            if ($valores <= 0) {
-                echo "<script>alert(\"Discente ($nome) não encontrado!\")</script>";
+        }else{
+            $nome = addslashes($_POST['nome']);
+            $query = "SELECT * FROM alunos WHERE `nome` = \"$nome\"";
+            $sql = $con->query($query) or die($con->error);
+            
+            if ($valores = mysqli_fetch_assoc($sql) <= 0) {
+                echo "<script>alert(\"Aluno com nome ($nome) não pode ser encontrado!\")</script>";
                 exit;
             }
-            echo "
+            else{
+                echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
                         <thead>
@@ -52,7 +50,9 @@
                                     Telefone
                                 </th>
                             </tr>
-                        </thead>
+                        </thead>";
+            while ($valores = mysqli_fetch_assoc($sql)){
+                echo "
                         <tbody>
                             <tr>
                                 <th>
@@ -65,7 +65,7 @@
                                     ".$valores['cpf']."
                                 </td>
                                 <td>
-                                    ".$valores['curso']."
+                                    ".$valores['id_curso']."
                                 </td>
                                 <td>
                                     ".$valores['email']."
@@ -75,67 +75,12 @@
                                 </td>
                             </tr> 
                         </tbody>       
-                    </table>
-                </div>";
-
-        }elseif ($_POST['nome']) {
-            $nome = $_POST['nome'];
-            $query = "SELECT * FROM alunos WHERE `nome`=\"$nome\"";
-            $sql = mysqli_query($con, $query);
-            $valores = mysqli_fetch_assoc($sql);
-            if ($valores <= 0) {
-                echo "<script>alert(\"Discente ($nome) não encontrado!\")</script>";
-                exit;
+                    ";
             }
-            echo "
-                <div class=\"table-responsive\">
-                    <table class=\"table table-hover\">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Id
-                                </th>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    CPF
-                                </th>
-                                <th>
-                                    Curso
-                                </th>
-                                <th>
-                                    E-mail
-                                </th>
-                                <th>
-                                    Telefone
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    ".$valores['id']."
-                                </th>
-                                <td>
-                                    ".$valores['nome']."
-                                </td>
-                                <td>
-                                    ".$valores['cpf']."
-                                </td>
-                                <td>
-                                    ".$valores['curso']."
-                                </td>
-                                <td>
-                                    ".$valores['email']."
-                                </td>
-                                <td>
-                                    ".$valores['telefone']."
-                                </td>
-                            </tr> 
-                        </tbody>       
+                echo "
                     </table>
                 </div>";
+            }
         }
     }
             

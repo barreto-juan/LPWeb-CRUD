@@ -7,7 +7,8 @@
     $con = mysqli_connect($host, $user, $pass);
 
     if (!mysqli_select_db($con, $db)) {
-        echo "<pre>". mysqli_errno($con) . ": " . mysqli_error($con). "</pre> \n";
+        echo "<pre>". $con->errno . ": " . $con->error. "</pre> </br>";
+        exit();
     }
 
 ?>
