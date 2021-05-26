@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $errUser = $errPass = "";
 $usuario = $senha = "";
@@ -12,9 +13,12 @@ if($lenSenha < 6 or $lenSenha > 8)
 	$errPass = "Senha deve conter entre 6 e 8 caracteres";
 
 if(strlen($errUser) or strlen($errPass))
-	header("Location: ../login.php?errUser=$errUser&errPass=$errPass");
+	header("Location: ../?errUser=$errUser&errPass=$errPass");
 else
-	/*alguma coisa*/;
+{
+	$_SESSION['login'] = "true";
+	header("Location: ../");
+}
 
 
 function testarInput($dado)

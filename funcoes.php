@@ -1,5 +1,10 @@
 <?php
-    function organiza(){
+session_start();
+
+function organiza(){
+	if(!isset($_SESSION['login']))
+		return "login.php";
+
         $pagina = "main.php";
             if (isset($_GET['i'])){
                 if ($_GET['i'] == "alunos") {
