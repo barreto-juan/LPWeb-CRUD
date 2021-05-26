@@ -13,75 +13,80 @@
 
 <?php
     if (isset($_POST['btn_ler_disc'])) {
+        $erros = "";
+
         if (!$_POST['nome']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\")</script>";
-            exit;
+            $erros .= "Campo nome não preenchido!\\n";
+        }if (!is_string($_POST['nome'])) {
+            $erros .= "Campo nome precisa ser uma string!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $nome = addslashes($_POST['nome']);
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+
+            /*$nome = addslashes($_POST['nome']);
             $query = "SELECT * FROM disciplinas WHERE `nome` LIKE '%$nome%'";
             $sql = $con->query($query) or die($con->error);
-            
-            if ($valores = mysqli_fetch_assoc($sql) <= 0) {
-                echo "<script>alert(\"Disciplina com nome ($nome) não pode ser encontrada!\")</script>";
-                exit;
-            }
-            else{
-                echo "
-            <div class=\"table-responsive\">
-                <table class=\"table table-hover\">
-                    <thead>
-                        <tr>
-                            <th>
-                                Id
-                            </th>
-                            <th>
-                                Nome
-                            </th>
-                            <th>
-                                Curso
-                            </th>
-                            <th>
-                                Semestre
-                            </th>
-                            <th>
-                                Ano
-                            </th>
-                            <th>
-                                Carga horária
-                            </th>
-                        </tr>
-                    </thead>
-            ";
-            while($valores = mysqli_fetch_assoc($sql)){
-                echo "
-                    <tbody>
-                        <tr>
-                            <th>
-                                ".$valores['id']."
-                            </th>
-                            <td>
-                                ".$valores['nome']."
-                            </td>
-                            <td>
-                                ".$valores['id_curso']."
-                            </td>
-                            <td>
-                                ".$valores['semestre']."º
-                            </td>
-                            <td>
-                                ".$valores['ano']."
-                            </td>
-                            <td>
-                                ".$valores['carga']." aulas
-                            </td>
-                        </tr> 
-                    </tbody>       
+                
+            echo "
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Curso
+                                </th>
+                                <th>
+                                    Semestre
+                                </th>
+                                <th>
+                                    Ano
+                                </th>
+                                <th>
+                                    Carga horária
+                                </th>
+                            </tr>
+                        </thead>
                 ";
+                while($valores = mysqli_fetch_assoc($sql)){
+                    echo "
+                        <tbody>
+                            <tr>
+                                <th>
+                                    ".$valores['id']."
+                                </th>
+                                <td>
+                                    ".$valores['nome']."
+                                </td>
+                                <td>
+                                    ".$valores['id_curso']."
+                                </td>
+                                <td>
+                                    ".$valores['semestre']."º
+                                </td>
+                                <td>
+                                    ".$valores['ano']."
+                                </td>
+                                <td>
+                                    ".$valores['carga']." aulas
+                                </td>
+                            </tr> 
+                        </tbody>       
+                    ";
+                }
+                echo "</table>
+                    </div>";*/
             }
-            echo "</table>
-                </div>";
-            }
-        }
     }
             
 ?>

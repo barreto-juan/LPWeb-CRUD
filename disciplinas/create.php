@@ -33,10 +33,36 @@
 
 <?php
     if(isset($_POST['btn_cad_disc'])){
-        if (!$_POST['nome'] or !$_POST['semestre'] or !$_POST['curso'] or !$_POST['carga']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\")</script>";
+        $erros = "";
+
+        if (!$_POST['nome']){
+            $erros .= "Campo nome não preenchido!\\n";
+        }if(!$_POST['semestre']){
+            $erros .= "Campo semestre não preenchido!\\n";
+        }if(!$_POST['curso']){
+            $erros .= "Campo curso não preenchido!\\n";
+        }if(!$_POST['carga']){
+            $erros .= "Campo carga horária não preenchido!\\n";
+        }if (!is_string($_POST['nome'])){
+            $erros .= "Campo nome precisa ser uma string!\\n";
+        }if(!is_numeric($_POST['semestre'])){
+            $erros .= "Campo semestre precisa ser um valor numérico!\\n";
+        }if(!is_numeric($_POST['curso'])){
+            $erros .= "Campo curso precisa ser um valor numérico!\\n";
+        }if(!is_numeric($_POST['carga'])){
+            $erros .= "Campo carga horária precisa ser um valor numérico!\\n";
+        }if (strlen($_POST['nome']) < 10 ) {
+            $erros .= "Campo nome com valor muito curto (Mínimo de 10 caracteres)!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $nome = addslashes($_POST['nome']);
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+            
+            /*$nome = addslashes($_POST['nome']);
             $semestre = addslashes($_POST['semestre']);
             $ano = date("Y");
             $curso = addslashes($_POST['curso']);
@@ -45,11 +71,15 @@
             $query = "INSERT INTO disciplinas(`id_curso`, `nome`, `semestre`, `ano`, `carga`) VALUES(\"$curso\", \"$nome\", \"$semestre\", \"$ano\", \"$carga\")";
             $sql = mysqli_query($con, $query);
 
-            if($sql){
-                echo"<script>alert(\"Disciplina cadastrada com sucesso!\");</script>";
-            }else{
-                echo"<script>alert(\"Não foi possível cadastrar a disciplina!\");</script>";
-            }
+            if($sql && mysqli_affected_rows($con) == 0){
+                echo "<script>alert(\"Não foi possível cadastrar a disciplina!\")</script>";
+                header("refresh");
+                exit;
+            }elseif($sql && mysqli_affected_rows($con) > 0){
+                echo "<script>alert(\"Disciplina cadastrada com sucesso!\")</script>";
+                header("refresh");
+                exit;
+            }*/
         }
     }
 

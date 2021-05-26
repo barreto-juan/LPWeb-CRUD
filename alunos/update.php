@@ -37,12 +37,48 @@
 </div>
 
 <?php
-    if(isset($_POST['btn_atu_aluno'])){
-        if (!$_POST['nome'] or !$_POST['cpf'] or !$_POST['curso'] or !$_POST['turma'] or !$_POST['email'] or !$_POST['telefone']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\");</script>";
-            exit();
+
+    if (isset($_POST['btn_atu_aluno'])) {
+        $erros = "";
+        
+        if (!$_POST['nome']){
+            $erros .= "Campo (atualizar)nome não preenchido!\\n";
+        }if(!$_POST['cpf']){
+            $erros .= "Campo (atualizar)CPF não preenchido!\\n";
+        }if(!$_POST['curso']){
+            $erros .= "Campo (atualizar)curso não preenchido!\\n";
+        }if(!$_POST['turma']){
+            $erros .= "Campo (atualizar)turma não preenchido!\\n";
+        }if(!$_POST['email']){
+            $erros .= "Campo (atualizar)email não preenchido!\\n";
+        }if(!$_POST['telefone']){
+            $erros .= "Campo (atualizar)telefone não preenchido!\\n";
+        }
+        
+        if (!is_string($_POST['nome'])){
+            $erros .= "Campo (atualizar)nome precisa ser uma string!\\n";
+        }if(!is_string($_POST['cpf'])){
+            $erros .= "Campo (atualizar)cpf precisa ser uma string!\\n";
+        }if(!is_numeric($_POST['curso'])){
+            $erros .= "Campo (atualizar)curso precisa ser um valor numérico!\\n";
+        }if(!is_numeric($_POST['turma'])){
+            $erros .= "Campo (atualizar)turma precisa ser um valor numérico!\\n";
+        }if (!is_string($_POST['email'])){
+            $erros .= "Campo (atualizar)email precisa ser uma string!\\n";
+        }if (!is_string($_POST['telefone'])){
+            $erros .= "Campo (atualizar)telefone precisa ser uma string!\\n";
+        }if (strlen($_POST['nome']) < 10 ) {
+            $erros .= "Campo (atualizar)nome com valor muito curto (Mínimo de 10 caracteres)!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $nome = addslashes($_POST['nome']);
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+
+            /*$nome = addslashes($_POST['nome']);
             $cpf = addslashes($_POST['cpf']);
             $curso = addslashes($_POST['curso']);
             $turma = addslashes($_POST['turma']);
@@ -54,12 +90,18 @@
             $sql = mysqli_query($con, $query);
 
             if($sql && mysqli_affected_rows($con) == 0){
-                echo "<script>alert(\"Aluno com o ($nome) não pode ser encontrado!\")</script>";
+                echo "<script>alert(\"Aluno com o nome ($nome) não pode ser encontrado!\")</script>";
+                header("refresh");
+                exit;
             }elseif($sql && mysqli_affected_rows($con) > 0){
-                echo "<script>alert(\"Aluno ($nome) atualizado com sucesso!\")</script>";
+                echo "<script>alert(\"Aluno atualizado com sucesso!\")</script>";
+                header("refresh");
+                exit;
             }else{
                 echo "<script>alert(\"Não foi possível atualizar o aluno ($nome)!\")</script>";
-            }
+                header("refresh");
+                exit;
+            }*/
 
         }
     }

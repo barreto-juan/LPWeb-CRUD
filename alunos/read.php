@@ -13,19 +13,25 @@
 
 <?php
     if (isset($_POST['btn_ler_alunos'])) {
+        $erros = "";
+
         if (!$_POST['nome']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\")</script>";
-            exit;
+            $erros .= "Campo nome não preenchido!\\n";
+        }if (!is_string($_POST['nome'])) {
+            $erros .= "Campo nome precisa ser uma string!\\n";
+        }
+
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $nome = addslashes($_POST['nome']);
-            $query = "SELECT * FROM alunos WHERE `nome` = \"$nome\"";
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+
+            /*$nome = addslashes($_POST['nome']);
+            $query = "SELECT * FROM alunos WHERE `nome` LIKE '%$nome%'";
             $sql = $con->query($query) or die($con->error);
             
-            if ($valores = mysqli_fetch_assoc($sql) <= 0) {
-                echo "<script>alert(\"Aluno com nome ($nome) não pode ser encontrado!\")</script>";
-                exit;
-            }
-            else{
                 echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
@@ -79,9 +85,8 @@
             }
                 echo "
                     </table>
-                </div>";
+                </div>";*/
             }
-        }
     }
             
 ?>

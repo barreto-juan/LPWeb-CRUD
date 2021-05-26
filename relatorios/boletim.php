@@ -13,19 +13,25 @@
 
 <?php
     if (isset($_POST['btn_ler_boletim'])) {
+        $erros = "";
+
         if (!$_POST['id']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\")</script>";
-            exit;
+            $erros .= "Campo id não preenchido!\\n";
+        }if (!is_numeric($_POST['id'])) {
+            $erros .= "Campo id precisa ser um valor numérico!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $id = addslashes($_POST['id']);
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+
+            /*$id = addslashes($_POST['id']);
             $query = "SELECT * FROM alunos WHERE `id` = \"$id\"";
             $sql = $con->query($query) or die($con->error);
             
-            if ($valores = mysqli_fetch_assoc($sql) <= 0) {
-                echo "<script>alert(\"Aluno com id ($id) não pode ser encontrado!\")</script>";
-                exit;
-            }
-            else{
                 echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
@@ -49,9 +55,8 @@
             }
                 echo "
                     </table>
-                </div>";
+                </div>";*/
             }
-        }
     }
             
 ?>

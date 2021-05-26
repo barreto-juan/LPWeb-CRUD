@@ -20,14 +20,25 @@
 
 <?php
     if(isset($_POST['btn_all'])){
+        $erros = "";
+
         if(!$_POST['turma']){
-            echo "<script>alert(\"Campo(s) preenchido(s) incorretamente!\");</script>";
-            exit();
+            $erros .= "Campo turma não preenchido!\\n";
+        }if(!is_numeric($_POST['turma'])){
+            $erros .= "Campo turma precisa ser um valor numérico!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
         }else{
-            $id = $_POST['turma'];
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+            
+            /*$id = intval($_POST['turma']);
             $query = "SELECT * FROM disciplinas WHERE id_curso = \"$id\"";
             $sql = $con->query($query) or die($con->error);
-
+        
             echo "
             <div class=\"table-responsive\">
                 <table class=\"table table-hover\">
@@ -81,8 +92,8 @@
                 ";
             }
             echo "</table>
-                </div>";
+                </div>";*/
         }
     }
 
-    ?>
+    ?> 

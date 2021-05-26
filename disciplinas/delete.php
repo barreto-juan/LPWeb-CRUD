@@ -15,19 +15,34 @@
 
 <?php
     if (isset($_POST['btn_del_disc'])) {
+        $erros = "";
+
         if (!$_POST['id']) {
-            echo "<script>alert(\"Campo(s) preenchido(s) inorretamente!\")</script>";
-            exit();
-        }else {
-            $id = $_POST['id'];
+            $erros .= "Campo id não preenchido!\\n";
+        }if(!is_numeric($_POST['id'])){
+            $erros .= "Campo id precisa ser um valor numérico!\\n";
+        }
+        
+        if (strlen($erros) > 0){
+            echo "<script>alert(\"$erros\")</script>";
+            header("refresh");
+        }else{
+            echo "<script>alert(\"Sucesso!\")</script>";
+            header("refresh");
+            
+            /*$id = intval($_POST['id']);
             $query = "DELETE FROM disciplinas WHERE `id`=\"$id\"";
             $sql = $con->query($query) or die($con->error);
             
-            if (!$sql) {
-                echo "<script>alert(\"Disciplina com id ($id) não pode ser encontrada!\")</script>";
-                exit();
-            }   
+            if($sql && mysqli_affected_rows($con) == 0){
+                echo "<script>alert(\"Não foi possível excluir a disciplina com id ($id)!\")</script>";
+                header("refresh");
+                exit;
+            }elseif($sql && mysqli_affected_rows($con) > 0){
+                echo "<script>alert(\"Disciplina excluída com sucesso!\")</script>";
+                header("refresh");
+                exit;
+            }*/
         }
-        echo "<script>alert(\"Disciplina excluída com sucesso!\")</script>";
     }
 ?>
