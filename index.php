@@ -1,4 +1,7 @@
 <?php
+    #require_once("conexao.php");
+    require_once("criar_banco.php");
+    require_once("criar_tabela.php");
     require_once("conexao.php");
     require_once("funcoes.php");
     require_once("pieces/header.php");
