@@ -9,7 +9,7 @@
     if (!mysqli_select_db($con, $db))
         echo "ERRO : <pre>". $con->errno . ": " . $con->error. "</pre> </br>";
 
-    $sql = "CREATE TABLE `cursos` (
+    $sql = "CREATE TABLE IF NOT EXISTS `cursos` (
       `id` int(11) not null primary key auto_increment,
       `nome` varchar(255) not null
     );";
@@ -21,7 +21,7 @@
     (4, \"Técnico em Informática\"),
     (5, \"Técnico em Meio Ambiente\");";
     
-    $sql .= "CREATE TABLE `disciplinas` (
+    $sql .= "CREATE TABLE IF NOT EXISTS `disciplinas` (
       `id` int(11) not null primary key auto_increment,
       `id_curso` int(11),
       `nome` varchar(255) not null,
@@ -37,7 +37,7 @@
     (2, 1, \"Língua Portuguesa\", 1, 2021, 144),
     (3, 2, \"Geografia\", 1, 2021, 120);";
     
-    $sql .= "CREATE TABLE `turmas` (
+    $sql .= "CREATE TABLE  IF NOT EXISTS `turmas` (
       `id` int(11) not null primary key auto_increment,
       `id_curso` int(11) not null,
       `turma` varchar(255) not null,
@@ -50,7 +50,7 @@
     (1, 4, \"3InfoB\", 30),
     (2, 4, \"3InfoA\", 30);";
     
-    $sql .= "CREATE TABLE `alunos` (
+    $sql .= "CREATE TABLE IF NOT EXISTS `alunos` (
       `id` int(11) not null primary key auto_increment,
       `id_curso` int(11),
       `id_turma` int(11),
@@ -63,10 +63,8 @@
       foreign key(`id_turma`) references turmas(`id`)
     );";
 
-	if (mysqli_multi_query($con, $sql))
-		echo "Tabelas criadas com sucesso </br>";
-	else
-		echo "Erro ao criar as tabelas : " . $con->error . "</br>";
+	if (!mysqli_multi_query($con, $sql))
+		echo "<script> alert(\"Erro ao criar as tabelas : " . $con->error . "\") </script>";
 
 	$con->close();
 

@@ -13,6 +13,8 @@ function organiza(){
                     $pagina = "disciplinas/index.php";
                 }else if ($_GET['i'] == "relatorios") {
                     $pagina = "relatorios/index.php";
+                }else if ($_GET['i'] == "cursos") {
+                    $pagina = "cursos/index.php";
                 }else{
                     $pagina = "main.php";
                 }
@@ -50,6 +52,23 @@ function organiza(){
                         $pagina = "disciplinas/index.php";
                     }
                 }
+
+		if (isset($_GET['i']) and $_GET['i'] == "cursos") {
+                    if ($_GET['f'] == "create") {
+                        $pagina = "cursos/create.php";
+                    }else if ($_GET['f'] == "read") {
+                        $pagina = "cursos/read.php";
+                    }else if ($_GET['f'] == "update") {
+                        $pagina = "cursos/update.php";
+                    }else if ($_GET['f'] == "delete") {
+                        $pagina = "cursos/delete.php";
+                    }else if ($_GET['f'] == "all") {
+                        $pagina = "cursos/all.php";
+                    }else{
+                        $pagina = "cursos/index.php";
+                    }
+                }
+
 
                 if (isset($_GET['i']) and $_GET['i'] == "relatorios") {
                     if ($_GET['f'] == "turmas") {

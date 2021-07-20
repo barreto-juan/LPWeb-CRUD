@@ -20,6 +20,7 @@
         <span class="options">
             <a href="?i=alunos"><img src="assets/img/student-icon.png" alt="student-icon"></a>
             <a href="?i=disciplinas"><img src="assets/img/subjects-icon.png" alt="sujects-icon"></a>
+	    <a href="?i=cursos"><img src="assets/img/courses-icon.png" alt="courses-icon"></a>
             <a href="?i=relatorios"><img src="assets/img/report-icon.png" alt="report-icon"></a>
             <a href="logout.php"><img src="assets/img/logout-icon.png" alt="logout-icon"></a>
         </span>

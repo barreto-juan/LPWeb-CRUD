@@ -9,6 +9,6 @@
     if (!mysqli_select_db($con, $db))
         echo "ERRO : <pre>". $con->errno . ": " . $con->error. "</pre> </br>";
 
-    $con->close();
+    //$con->close();
 
 ?>
