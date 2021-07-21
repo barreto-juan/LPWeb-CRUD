@@ -26,9 +26,10 @@
 
 	$nome = tratar_input($_POST['nome']);
 
-        if (empty($nome)) {
-            $erros .= "Campo nome não preenchido!\\n";
-        }if (!is_string($nome)) {
+//        if (empty($nome)) {
+//            $erros .= "Campo nome não preenchido!\\n";
+//    }
+    	if (!is_string($nome)) {
             $erros .= "Campo nome precisa ser uma string!\\n";
         }
         
