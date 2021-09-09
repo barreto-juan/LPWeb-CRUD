@@ -1,4 +1,4 @@
-<div class="form read-disciplinas">
+<div class="form del-disciplinas">
     <form action="" method="post">
         <h1>Excluir disciplinas</h1>
         <hr>

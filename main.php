@@ -20,6 +20,16 @@
     </div>
 
     <div class="a-content">
+        <a href="?i=cursos">
+            <div class="main-cursos">
+                <div class="logo-cursos">
+                    <img src="assets/img/courses-icon.png" alt="cursos">
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="a-content">
         <a href="?i=relatorios">
             <div class="main-relatorios">
                 <div class="logo-relatorios">

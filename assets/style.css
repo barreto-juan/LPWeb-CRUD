@@ -56,13 +56,13 @@ a, a:hover{
 }
 
 /******CLASSES ==> MAIN******/
-.main-alunos:hover, .main-disciplinas:hover, .main-relatorios:hover{
+.main-alunos:hover, .main-disciplinas:hover, .main-cursos:hover, .main-relatorios:hover{
     box-shadow: 4px 4px 10px #000;
     transition: all .4s;
 
 }
 
-.main-alunos, .main-disciplinas, .main-relatorios{
+.main-alunos, .main-disciplinas, .main-cursos, .main-relatorios{
     margin: 0;
     padding: 10px;
 
@@ -81,21 +81,21 @@ a, a:hover{
     transition: all .4s;
 }
 
-/******CLASSES ==> LOGO******/
-.logo-alunos img, .logo-disciplinas img, .logo-relatorios img{
+/******CLASSE ==> LOGO******/
+.logo-alunos img, .logo-disciplinas img, .logo-cursos img, .logo-relatorios img{
     width: 100px;
     height: 100px;
 }
 
 /******CLASSES ===> ALUNOS - DISCIPLINAS E RELATORIOS******/
-.alunos, .disciplinas, .relatorios{
+.alunos, .disciplinas, .cursos, .relatorios{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80vh;
 }
 
-.alunos ul, .disciplinas ul{
+.alunos ul, .disciplinas ul, .cursos ul{
     display: flex;
     flex-wrap: wrap;
 }
