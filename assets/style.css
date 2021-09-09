@@ -81,7 +81,7 @@ a, a:hover{
     transition: all .4s;
 }
 
-/******CLASSE ==> LOGO******/
+/******CLASSES ==> LOGO******/
 .logo-alunos img, .logo-disciplinas img, .logo-relatorios img{
     width: 100px;
     height: 100px;
@@ -119,7 +119,7 @@ li:hover{
     transition: all .4s;
 }
 
-/******FORM******/
+/******CLASS => FORM******/
 .form{
     display: flex;
     justify-content: center;
@@ -127,7 +127,7 @@ li:hover{
     flex-wrap: wrap;
 
     text-align: center;
-    height: 80vh;
+    /*height: 80vh;*/
 }
 
 /******HR******/
@@ -136,7 +136,7 @@ hr{
     border: 1px solid #000;
 }
 
-/******INPUT******/
+/******IDS => INPUT******/
 #id, #nome, #cpf, #semestre, #carga, #turma, #curso, #email, #telefone{
     margin: 0;
     padding: 8px;
@@ -172,6 +172,34 @@ input[type="submit"]{
 
 #id:hover, #nome:hover, #cpf:hover, #semestre:hover, #turma:hover, #curso:hover, #carga:hover, #email:hover, #telefone:hover, input[type="submit"]:hover{
     background-color: rgb(240, 240, 240);
+}
+
+/**********CLASSES => ALERTS***********/
+.alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.alert-error{
+    margin: 0;
+    padding: 20px;
+    width: max-content;
+
+    background-color: lightcoral;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.alert-sucess{
+    margin: 0;
+    padding: 20px;
+
+    background-color: lightgreen;
+    border: 1px solid green;
+    border-radius: 4px;
 }
 
 /******MEDIA QUERIES******/

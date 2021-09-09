@@ -23,23 +23,20 @@
 
         if (strlen($erros) > 0){
             echo "<script>alert(\"$erros\")</script>";
-            header("refresh");
         }else{
-            echo "<script>alert(\"Sucesso!\")</script>";
-            header("refresh");
-
-            /*$nome = addslashes($_POST['nome']);
+            $nome = addslashes($_POST['nome']);
             $query = "SELECT * FROM alunos WHERE `nome` LIKE '%$nome%'";
             $sql = $con->query($query) or die($con->error);
+
+            if(mysqli_num_rows($sql) ==  0){
+                echo "<script>alert(\"Usuário nao encontrado!\")</script>"; ;
+            }else{
             
                 echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
                         <thead>
                             <tr>
-                                <th>
-                                    Id
-                                </th>
                                 <th>
                                     Nome
                                 </th>
@@ -61,9 +58,6 @@
                 echo "
                         <tbody>
                             <tr>
-                                <th>
-                                    ".$valores['id']."
-                                </th>
                                 <td>
                                     ".$valores['nome']."
                                 </td>
@@ -85,8 +79,9 @@
             }
                 echo "
                     </table>
-                </div>";*/
+                </div>";
             }
+        }
     }
             
 ?>

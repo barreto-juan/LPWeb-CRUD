@@ -22,77 +22,72 @@
     if(isset($_POST['btn_all'])){
         $erros = "";
 
-        if(!$_POST['turma']){
-            $erros .= "Campo turma não preenchido!\\n";
-        }if(!is_numeric($_POST['turma'])){
-            $erros .= "Campo turma precisa ser um valor numérico!\\n";
+        if (!$_POST['turma']){
+            $erros .= "Campo (turma) não foi selecionado!\\n";
+        } if (!is_numeric($_POST['turma'])){
+            $erros .= "Campo (turma) precisa ser um valor numérico!\\n";
         }
         
         if (strlen($erros) > 0){
             echo "<script>alert(\"$erros\")</script>";
-            header("refresh");
-        }else{
-            echo "<script>alert(\"Sucesso!\")</script>";
-            header("refresh");
+        } else {
 
-            /*$id = intval($_POST['turma']);
+            $id = intval($_POST['turma']);
             $query = "SELECT * FROM alunos WHERE id_curso = \"$id\"";
             $sql = $con->query($query) or die($con->error);
 
-            echo "
-            <div class=\"table-responsive\">
-                <table class=\"table table-hover\">
-                    <thead>
-                        <tr>
-                            <th>
-                                Id
-                            </th>
-                            <th>
-                                Nome
-                            </th>
-                            <th>
-                                CPF
-                            </th>
-                            <th>
-                                Curso
-                            </th>
-                            <th>
-                                E-mail
-                            </th>
-                            <th>
-                                Telefone
-                            </th>
-                        </tr>
-                    </thead>
-            ";
-            while($valores = mysqli_fetch_assoc($sql)){
-                echo "
-                    <tbody>
-                        <tr>
-                            <th>
-                                ".$valores['id']."
-                            </th>
-                            <td>
-                                ".$valores['nome']."
-                            </td>
-                            <td>
-                                ".$valores['cpf']."
-                            </td>
-                            <td>
-                                ".$valores['id_curso']."
-                            </td>
-                            <td>
-                                ".$valores['email']."
-                            </td>
-                            <td>
-                                ".$valores['telefone']."
-                            </td>
-                        </tr> 
-                    </tbody>       
-                ";
-            }
-            echo "</table>
-                </div>";*/
+            if (mysqli_num_rows($sql) == 0) {
+                echo "<script>alert(\"Aluno não encontrado!\")</script>";
+            } else {
+               echo "
+                    <div class=\"table-responsive\">
+                        <table class=\"table table-hover\">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        CPF
+                                    </th>
+                                    <th>
+                                        Curso
+                                    </th>
+                                    <th>
+                                        E-mail
+                                    </th>
+                                    <th>
+                                        Telefone
+                                    </th>
+                                </tr>
+                            </thead>
+                    ";
+                    while($valores = mysqli_fetch_assoc($sql)){
+                        echo "
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ".$valores['nome']."
+                                    </td>
+                                    <td>
+                                        ".$valores['cpf']."
+                                    </td>
+                                    <td>
+                                        ".$valores['id_curso']."
+                                    </td>
+                                    <td>
+                                        ".$valores['email']."
+                                    </td>
+                                    <td>
+                                        ".$valores['telefone']."
+                                    </td>
+                                </tr> 
+                            </tbody>       
+                        ";
+                    }
+                    echo "</table>
+                        </div>";
+                }
         }
     }
 

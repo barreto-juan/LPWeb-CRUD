@@ -43,43 +43,48 @@
         $erros = "";
 
         if (!$_POST['nome']){
-            $erros .= "Campo nome não preenchido!\\n";
+            $erros .= "Campo (nome) não foi preenchido! <hr>";
         }if(!$_POST['cpf']){
-            $erros .= "Campo CPF não preenchido!\\n";
+            $erros .= "Campo (CPF) não foi preenchido! <hr>";
         }if(!$_POST['curso']){
-            $erros .= "Campo curso não preenchido!\\n";
+            $erros .= "Campo (curso) não foi selecionado! <hr>";
         }if(!$_POST['turma']){
-            $erros .= "Campo turma não preenchido!\\n";
+            $erros .= "Campo (turma) não foi selecionado! <hr>";
         }if(!$_POST['email']){
-            $erros .= "Campo email não preenchido!\\n";
+            $erros .= "Campo (email) não foi preenchido! <hr>";
         }if(!$_POST['telefone']){
-            $erros .= "Campo telefone não preenchido!\\n";
+            $erros .= "Campo (telefone) não foi preenchido! <hr>";
         }
         
         if (!is_string($_POST['nome'])){
-            $erros .= "Campo nome precisa ser uma string!\\n";
+            $erros .= "Campo (nome) precisa ser composto de letras! <hr>";
         }if(!is_string($_POST['cpf'])){
-            $erros .= "Campo cpf precisa ser uma string!\\n";
+            $erros .= "Campo (CPF) precisa ser composto por números e separadores! <hr>";
         }if(!is_numeric($_POST['curso'])){
-            $erros .= "Campo curso precisa ser um valor numérico!\\n";
+            $erros .= "Campo (curso) precisa ser composto por um índice! <hr>";
         }if(!is_numeric($_POST['turma'])){
-            $erros .= "Campo turma precisa ser um valor numérico!\\n";
+            $erros .= "Campo (turma) precisa ser composto por um índice! <hr>";
         }if (!is_string($_POST['email'])){
-            $erros .= "Campo email precisa ser uma string!\\n";
+            $erros .= "Campo (email) precisa ser composto de letras, um arroba(@) e um domínio! <hr>";
         }if (!is_string($_POST['telefone'])){
-            $erros .= "Campo telefone precisa ser uma string!\\n";
-        }if (strlen($_POST['nome']) < 10 ) {
-            $erros .= "Campo nome com valor muito curto (Mínimo de 10 caracteres)!\\n";
+            $erros .= "Campo (telefone) precisa ser composto por números e separadores! <hr>";
+        }
+        
+        if (strlen($_POST['nome']) < 10 ) {
+            $erros .= "Campo (nome) com tamanho curto! (Mínimo de 10 caracteres) <hr>";
         }
         
         if (strlen($erros) > 0){
-            echo "<script>alert(\"$erros\")</script>";
-            header("refresh");
+            echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>"
+                        .$erros. 
+                    "</div>
+                </div>";
         }else{
-            echo "<script>alert(\"Sucesso!\")</script>";
-            header("refresh");
-
-            /*$nome = addslashes($_POST['nome']);
+            
+            $nome = addslashes($_POST['nome']);
             $cpf = addslashes($_POST['cpf']);
             $curso = addslashes($_POST['curso']);
             $turma = addslashes($_POST['turma']);
@@ -90,14 +95,24 @@
             $sql = $con->query($query) or die($con->error);
 
             if($sql && mysqli_affected_rows($con) == 0){
-                echo "<script>alert(\"Não foi possível cadastrar o aluno!\")</script>";
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                        Não foi possível cadastrar o aluno!
+                    </div>
+                </div>";
                 header("refresh");
-                exit;
             }elseif($sql && mysqli_affected_rows($con) > 0){
-                echo "<script>alert(\"Aluno cadastrado com sucesso!\")</script>";
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-sucess\">
+                        <h1>ÊXITO</h1>  <hr>
+                        Aluno cadastrado com sucesso!
+                    </div>
+                </div>";
                 header("refresh");
-                exit;
-            }*/
+            }
         }
     }
 ?>
