@@ -15,23 +15,35 @@
     if (isset($_POST['btn_ler_alunos'])) {
         $erros = "";
 
-        if (!$_POST['nome']) {
+        if (!$_POST['nome'])
             $erros .= "Campo nome não preenchido!\\n";
-        }if (!is_string($_POST['nome'])) {
+        if (!is_string($_POST['nome']))
             $erros .= "Campo nome precisa ser uma string!\\n";
-        }
 
         if (strlen($erros) > 0){
-            echo "<script>alert(\"$erros\")</script>";
+            echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>"
+                        .$erros. 
+                    "</div>
+                </div>";
         }else{
             $nome = addslashes($_POST['nome']);
-            $query = "SELECT * FROM alunos WHERE `nome` LIKE '%$nome%'";
-            $sql = $con->query($query) or die($con->error);
-
-            if(mysqli_num_rows($sql) ==  0){
-                echo "<script>alert(\"Usuário nao encontrado!\")</script>"; ;
-            }else{
             
+            require_once "alunos.php";
+            readAluno($nome);
+        
+            if(mysqli_num_rows($con) == 0){
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                        Não foi possível encontrar o aluno!
+                    </div>
+                </div>";
+                header("refresh");
+            }else{
                 echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
@@ -54,7 +66,7 @@
                                 </th>
                             </tr>
                         </thead>";
-            while ($valores = mysqli_fetch_assoc($sql)){
+            while($valores = mysqli_fetch_assoc($sql)){
                 echo "
                         <tbody>
                             <tr>

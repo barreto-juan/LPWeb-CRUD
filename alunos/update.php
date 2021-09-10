@@ -41,67 +41,69 @@
     if (isset($_POST['btn_atu_aluno'])) {
         $erros = "";
         
-        if (!$_POST['nome']){
+        if (!$_POST['nome'])
             $erros .= "Campo (atualizar)nome não preenchido!\\n";
-        }if(!$_POST['cpf']){
+        if(!$_POST['cpf'])
             $erros .= "Campo (atualizar)CPF não preenchido!\\n";
-        }if(!$_POST['curso']){
+        if(!$_POST['curso'])
             $erros .= "Campo (atualizar)curso não preenchido!\\n";
-        }if(!$_POST['turma']){
+        if(!$_POST['turma'])
             $erros .= "Campo (atualizar)turma não preenchido!\\n";
-        }if(!$_POST['email']){
+        if(!$_POST['email'])
             $erros .= "Campo (atualizar)email não preenchido!\\n";
-        }if(!$_POST['telefone']){
+        if(!$_POST['telefone'])
             $erros .= "Campo (atualizar)telefone não preenchido!\\n";
-        }
         
-        if (!is_string($_POST['nome'])){
+        
+        if (!is_string($_POST['nome']))
             $erros .= "Campo (atualizar)nome precisa ser uma string!\\n";
-        }if(!is_string($_POST['cpf'])){
+        if(!is_string($_POST['cpf']))
             $erros .= "Campo (atualizar)cpf precisa ser uma string!\\n";
-        }if(!is_numeric($_POST['curso'])){
+        if(!is_numeric($_POST['curso']))
             $erros .= "Campo (atualizar)curso precisa ser um valor numérico!\\n";
-        }if(!is_numeric($_POST['turma'])){
+        if(!is_numeric($_POST['turma']))
             $erros .= "Campo (atualizar)turma precisa ser um valor numérico!\\n";
-        }if (!is_string($_POST['email'])){
+        if (!is_string($_POST['email']))
             $erros .= "Campo (atualizar)email precisa ser uma string!\\n";
-        }if (!is_string($_POST['telefone'])){
+        if (!is_string($_POST['telefone']))
             $erros .= "Campo (atualizar)telefone precisa ser uma string!\\n";
-        }if (strlen($_POST['nome']) < 10 ) {
+        if (strlen($_POST['nome']) < 10 )
             $erros .= "Campo (atualizar)nome com valor muito curto (Mínimo de 10 caracteres)!\\n";
-        }
+        
         
         if (strlen($erros) > 0){
             echo "<script>alert(\"$erros\")</script>";
             header("refresh");
         }else{
-            echo "<script>alert(\"Sucesso!\")</script>";
-            header("refresh");
-
-            /*$nome = addslashes($_POST['nome']);
+            $nome = addslashes($_POST['nome']);
             $cpf = addslashes($_POST['cpf']);
             $curso = addslashes($_POST['curso']);
             $turma = addslashes($_POST['turma']);
             $email = addslashes($_POST['email']);
             $telefone = addslashes($_POST['telefone']);
 
-            $query = "UPDATE `alunos` SET `nome`=\"$nome\", `cpf`=\"$cpf\", `id_curso`=\"$curso\", `id_turma`=\"$turma\", `email`=\"$email\", `telefone`=\"$telefone\" WHERE `nome`=\"$nome\"";
-            
-            $sql = mysqli_query($con, $query);
+            require_once "alunos.php";
+            updateAluno($nome, $cpf, $curso, $turma, $email, $telefone);
 
             if($sql && mysqli_affected_rows($con) == 0){
-                echo "<script>alert(\"Aluno com o nome ($nome) não pode ser encontrado!\")</script>";
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                        Aluno com o nome ($nome) não pode ser encontrado!
+                    </div>
+                </div>";
                 header("refresh");
-                exit;
             }elseif($sql && mysqli_affected_rows($con) > 0){
-                echo "<script>alert(\"Aluno atualizado com sucesso!\")</script>";
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-sucess\">
+                        <h1>ÊXITO</h1>  <hr>
+                        Aluno atualizado com sucesso!
+                    </div>
+                </div>";
                 header("refresh");
-                exit;
-            }else{
-                echo "<script>alert(\"Não foi possível atualizar o aluno ($nome)!\")</script>";
-                header("refresh");
-                exit;
-            }*/
+            }
 
         }
     }

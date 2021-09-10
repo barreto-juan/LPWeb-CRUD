@@ -2,16 +2,21 @@
     <form action="" method="post">
         <h1>Consulta geral</h1>
         <hr>
-        <h4>Selecione a turma</h4>
+        <h4>Selecione o curso</h4>
 
-        <label for="turma">Turma</label> <br>
-        <select name="turma" id="turma">
+        <label for="curso">Curso</label> <br>
+        <select name="curso" id="curso">
             <option value="">---</option>
-            <option value="1">Técnico em Agropecuária</option>
-            <option value="2">Técnico em Agrimensura</option>
-            <option value="3">Técnico em Alimentos</option>
-            <option value="4">Técnico em Informática</option>
-            <option value="5">Técnico em Meio Ambiente</option>
+            
+            <?php
+                $query = "SELECT * FROM `cursos`";
+                $sql = $con->query($query) or die($con->error);
+
+                while ($valores = mysqli_fetch_assoc($sql)){
+                    echo "<option value=". $valores["id"]. ">". $valores["nome"] ."</option>";
+                }
+            ?>
+
         </select> <br>
 
         <input type="submit" name="btn_all" value="Pesquisar">
@@ -22,22 +27,35 @@
     if(isset($_POST['btn_all'])){
         $erros = "";
 
-        if (!$_POST['turma']){
-            $erros .= "Campo (turma) não foi selecionado!\\n";
-        } if (!is_numeric($_POST['turma'])){
-            $erros .= "Campo (turma) precisa ser um valor numérico!\\n";
-        }
+        if (!$_POST['curso'])
+            $erros .= "Campo (curso) não foi selecionado!\\n";
+        if (!is_numeric($_POST['curso']))
+            $erros .= "Campo (curso) precisa ser um valor numérico!\\n";
         
         if (strlen($erros) > 0){
-            echo "<script>alert(\"$erros\")</script>";
+            echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>"
+                        . $erros .
+                    "</div>
+                </div>";
+                header("refresh");
         } else {
+            $curso = intval($_POST['curso']);
+            
+            require_once "alunos.php";
+            viewAll($curso);
 
-            $id = intval($_POST['turma']);
-            $query = "SELECT * FROM alunos WHERE id_curso = \"$id\"";
-            $sql = $con->query($query) or die($con->error);
-
-            if (mysqli_num_rows($sql) == 0) {
-                echo "<script>alert(\"Aluno não encontrado!\")</script>";
+            if (mysqli_num_rows($con) == 0){
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                        Não foi possível encontrar alunos neste curso!
+                    </div>
+                </div>";
+                header("refresh");
             } else {
                echo "
                     <div class=\"table-responsive\">

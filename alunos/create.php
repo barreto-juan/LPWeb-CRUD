@@ -11,19 +11,35 @@
         <label for="curso">Curso</label> <br>
         <select name="curso" id="curso">
             <option value="">---</option>
-            <option value="1">Técnico em Agropecuária</option>
-            <option value="2">Técnico em Agrimensura</option>
-            <option value="3">Técnico em Alimentos</option>
-            <option value="4">Técnico em Informática</option>
-            <option value="5">Técnico em Meio Ambiente</option>
+
+            <?php 
+                $query = "SELECT * FROM cursos";
+                $sql = $con->query($query) or die($con->error);
+    
+                while($valores = mysqli_fetch_assoc($sql)){
+                    echo "
+                        <option value=". $valores["id"]. ">". $valores["nome"] ."</option>
+                    ";
+                }
+            ?>
         </select> <br>
         
         <label for="turma">Turma</label> <br>
         <select name="turma" id="turma">
             <option value="">---</option>
-            <option value="1">3InfoA</option>
-            <option value="2">3InfoB</option>
-        </select> <br>
+            
+            <?php
+                $query = "SELECT * FROM turmas";
+                $sql = $con->query($query) or die($con->error);
+                
+                while($valores = mysqli_fetch_assoc($sql)){
+                    echo "
+                        <option value=". $valores["id"] .">". $valores["turma"] ."</option>
+                    ";
+                }
+            ?>
+        
+    </select> <br>
         
         <label for="email">Email</label> <br>
         <input type="email" name="email" id="email" placeholder="Ex:. admin@teste.com"> <br>
@@ -42,37 +58,36 @@
     if (isset($_POST['btn_cad_aluno'])) {
         $erros = "";
 
-        if (!$_POST['nome']){
+        if (!$_POST['nome'])
             $erros .= "Campo (nome) não foi preenchido! <hr>";
-        }if(!$_POST['cpf']){
+        if(!$_POST['cpf'])
             $erros .= "Campo (CPF) não foi preenchido! <hr>";
-        }if(!$_POST['curso']){
+        if(!$_POST['curso'])
             $erros .= "Campo (curso) não foi selecionado! <hr>";
-        }if(!$_POST['turma']){
+        if(!$_POST['turma'])
             $erros .= "Campo (turma) não foi selecionado! <hr>";
-        }if(!$_POST['email']){
+        if(!$_POST['email'])
             $erros .= "Campo (email) não foi preenchido! <hr>";
-        }if(!$_POST['telefone']){
+        if(!$_POST['telefone'])
             $erros .= "Campo (telefone) não foi preenchido! <hr>";
-        }
         
-        if (!is_string($_POST['nome'])){
+        
+        if (!is_string($_POST['nome']))
             $erros .= "Campo (nome) precisa ser composto de letras! <hr>";
-        }if(!is_string($_POST['cpf'])){
+        if (!is_string($_POST['cpf']))
             $erros .= "Campo (CPF) precisa ser composto por números e separadores! <hr>";
-        }if(!is_numeric($_POST['curso'])){
+        if (!is_numeric($_POST['curso']))
             $erros .= "Campo (curso) precisa ser composto por um índice! <hr>";
-        }if(!is_numeric($_POST['turma'])){
+        if (!is_numeric($_POST['turma']))
             $erros .= "Campo (turma) precisa ser composto por um índice! <hr>";
-        }if (!is_string($_POST['email'])){
+        if (!is_string($_POST['email']))
             $erros .= "Campo (email) precisa ser composto de letras, um arroba(@) e um domínio! <hr>";
-        }if (!is_string($_POST['telefone'])){
+        if (!is_string($_POST['telefone']))
             $erros .= "Campo (telefone) precisa ser composto por números e separadores! <hr>";
-        }
         
-        if (strlen($_POST['nome']) < 10 ) {
+        
+        if (strlen($_POST['nome']) < 10 )
             $erros .= "Campo (nome) com tamanho curto! (Mínimo de 10 caracteres) <hr>";
-        }
         
         if (strlen($erros) > 0){
             echo "
@@ -83,7 +98,6 @@
                     "</div>
                 </div>";
         }else{
-            
             $nome = addslashes($_POST['nome']);
             $cpf = addslashes($_POST['cpf']);
             $curso = addslashes($_POST['curso']);
@@ -91,8 +105,8 @@
             $email = addslashes($_POST['email']);
             $telefone = addslashes($_POST['telefone']);
 
-            $query = "INSERT INTO alunos(`nome`, `cpf`, `id_curso`, `id_turma`, `email`, `telefone`) VALUES(\"$nome\", \"$cpf\", \"$curso\", \"$turma\", \"$email\", \"$telefone\")";
-            $sql = $con->query($query) or die($con->error);
+            require_once "alunos.php";
+            createAluno($nome, $cpf, $curso, $turma, $email, $telefone);
 
             if($sql && mysqli_affected_rows($con) == 0){
                 echo "
@@ -115,4 +129,5 @@
             }
         }
     }
+
 ?>

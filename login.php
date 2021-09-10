@@ -13,9 +13,10 @@
 
         <label for="passwd">Senha</label> <br>
 	<input type="password" name="passwd" id="passwd" required> <br>
-	<?php
-	if(isset($_GET['errPass']))
-		echo "<p style=\"color:red; font-size:15px\">" . $_GET['errPass'] . "</p>";
+	
+        <?php
+                if(isset($_GET['errPass']))
+                        echo "<p style=\"color:red; font-size:15px\">" . $_GET['errPass'] . "</p>";
 	?>
 
         <input type="submit" name="btn_login" value="Entrar">
