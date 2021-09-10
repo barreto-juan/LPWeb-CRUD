@@ -16,9 +16,9 @@
         $erros = "";
 
         if (!$_POST['nome'])
-            $erros .= "Campo nome não preenchido!\\n";
+            $erros .= "Campo nome não preenchido! <hr>";
         if (!is_string($_POST['nome']))
-            $erros .= "Campo nome precisa ser uma string!\\n";
+            $erros .= "Campo nome precisa ser uma string! <hr>";
 
         if (strlen($erros) > 0){
             echo "
@@ -32,9 +32,9 @@
             $nome = addslashes($_POST['nome']);
             
             require_once "alunos.php";
-            readAluno($nome);
-        
-            if(mysqli_num_rows($con) == 0){
+            $sql = readAluno($nome);
+            
+            if(mysqli_num_rows($sql) == 0){
                 echo "
                 <div class=\"alert\">
                     <div class=\"alert-error\">
@@ -43,12 +43,16 @@
                     </div>
                 </div>";
                 header("refresh");
-            }else{
+                exit;
+            } else {
                 echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
                         <thead>
                             <tr>
+                                <th>
+                                    Id
+                                </th>
                                 <th>
                                     Nome
                                 </th>
@@ -70,6 +74,9 @@
                 echo "
                         <tbody>
                             <tr>
+                                <th>
+                                    ".$valores['id']."
+                                </th>
                                 <td>
                                     ".$valores['nome']."
                                 </td>
@@ -95,5 +102,3 @@
             }
         }
     }
-            
-?>

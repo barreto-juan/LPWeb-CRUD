@@ -18,9 +18,9 @@
         $erros = "";
 
         if (!$_POST['id'])
-            $erros .= "Campo id não preenchido!\\n";
+            $erros .= "Campo id não preenchido! <hr>";
         if(!is_numeric($_POST['id']))
-            $erros .= "Campo id precisa ser um valor numérico!\\n";
+            $erros .= "Campo id precisa ser um valor numérico! <hr>";
         
         if (strlen($erros) > 0){
             echo "
@@ -45,6 +45,7 @@
                     </div>
                 </div>";
                 header("refresh");
+                exit;
             }elseif($sql && mysqli_affected_rows($con) > 0){
                 echo "
                 <div class=\"alert\">
@@ -54,7 +55,7 @@
                     </div>
                 </div>";
                 header("refresh");
+                exit;
             }
         }
     }
-?>

@@ -117,6 +117,7 @@
                     </div>
                 </div>";
                 header("refresh");
+                exit;
             }elseif($sql && mysqli_affected_rows($con) > 0){
                 echo "
                 <div class=\"alert\">
@@ -126,8 +127,7 @@
                     </div>
                 </div>";
                 header("refresh");
+                exit;
             }
         }
     }
-
-?>

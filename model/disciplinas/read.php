@@ -15,23 +15,38 @@
     if (isset($_POST['btn_ler_disc'])) {
         $erros = "";
 
-        if (!$_POST['nome']) {
-            $erros .= "Campo nome não preenchido!\\n";
-        }if (!is_string($_POST['nome'])) {
-            $erros .= "Campo nome precisa ser uma string!\\n";
-        }
+        if (!$_POST['nome'])
+            $erros .= "Campo nome não preenchido! <hr>";
+        if (!is_string($_POST['nome']))
+            $erros .= "Campo nome precisa ser uma string! <hr>";
         
         if (strlen($erros) > 0){
-            echo "<script>alert(\"$erros\")</script>";
+            echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                            ". $erros ."
+                        </div>
+                </div>";
             header("refresh");
+            exit;
         }else{
-            echo "<script>alert(\"Sucesso!\")</script>";
-            header("refresh");
+            $nome = addslashes($_POST['nome']);
+            
+            require_once "disciplinas.php";
+            $sql = readDisciplinas($nome);
 
-            /*$nome = addslashes($_POST['nome']);
-            $query = "SELECT * FROM disciplinas WHERE `nome` LIKE '%$nome%'";
-            $sql = $con->query($query) or die($con->error);
-                
+            if (mysqli_num_rows($sql) == 0) {
+                echo "
+                <div class=\"alert\">
+                    <div class=\"alert-error\">
+                        <h1>ERRO</h1>  <hr>
+                            Disciplina não encontrada!
+                        </div>
+                </div>";
+                header("refresh");
+                exit;
+            }else{
             echo "
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">
@@ -85,8 +100,8 @@
                     ";
                 }
                 echo "</table>
-                    </div>";*/
+                    </div>";
             }
+        }
     }
             
-?>

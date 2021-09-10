@@ -28,9 +28,9 @@
         $erros = "";
 
         if (!$_POST['curso'])
-            $erros .= "Campo (curso) não foi selecionado!\\n";
+            $erros .= "Campo (curso) não foi selecionado! <hr>";
         if (!is_numeric($_POST['curso']))
-            $erros .= "Campo (curso) precisa ser um valor numérico!\\n";
+            $erros .= "Campo (curso) precisa ser um valor numérico! <hr>";
         
         if (strlen($erros) > 0){
             echo "
@@ -41,21 +41,23 @@
                     "</div>
                 </div>";
                 header("refresh");
+                exit;
         } else {
             $curso = intval($_POST['curso']);
             
             require_once "alunos.php";
-            viewAll($curso);
+            $sql = viewAll($curso);
 
-            if (mysqli_num_rows($con) == 0){
+            if (mysqli_num_rows($sql) == 0){
                 echo "
-                <div class=\"alert\">
-                    <div class=\"alert-error\">
-                        <h1>ERRO</h1>  <hr>
-                        Não foi possível encontrar alunos neste curso!
-                    </div>
-                </div>";
+                    <div class=\"alert\">
+                        <div class=\"alert-error\">
+                            <h1>ERRO</h1>  <hr>
+                                Não foi possível encontrar alunos neste curso!
+                            </div>
+                    </div>";
                 header("refresh");
+                exit;
             } else {
                echo "
                     <div class=\"table-responsive\">
@@ -79,7 +81,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                    ";
+                        ";
                     while($valores = mysqli_fetch_assoc($sql)){
                         echo "
                             <tbody>
@@ -108,5 +110,3 @@
                 }
         }
     }
-
-    ?>

@@ -8,13 +8,13 @@ function organiza(){
         $pagina = "main.php";
             if (isset($_GET['i'])){
                 if ($_GET['i'] == "alunos") {
-                    $pagina = "alunos/index.php";
+                    $pagina = "model/alunos/index.php";
                 }else if ($_GET['i'] == "disciplinas") {
-                    $pagina = "disciplinas/index.php";
+                    $pagina = "model/disciplinas/index.php";
                 }else if ($_GET['i'] == "relatorios") {
-                    $pagina = "relatorios/index.php";
+                    $pagina = "model/relatorios/index.php";
                 }else if ($_GET['i'] == "cursos") {
-                    $pagina = "cursos/index.php";
+                    $pagina = "model/cursos/index.php";
                 }else{
                     $pagina = "main.php";
                 }
@@ -23,64 +23,64 @@ function organiza(){
             if (isset($_GET['f'])){
                 if (isset($_GET['i']) and $_GET['i'] == "alunos") {
                     if ($_GET['f'] == "create") {
-                        $pagina = "alunos/create.php";
+                        $pagina = "model/alunos/create.php";
                     }else if ($_GET['f'] == "read") {
-                        $pagina = "alunos/read.php";
+                        $pagina = "model/alunos/read.php";
                     }else if ($_GET['f'] == "update") {
-                        $pagina = "alunos/update.php";
+                        $pagina = "model/alunos/update.php";
                     }else if ($_GET['f'] == "delete") {
-                        $pagina = "alunos/delete.php";
+                        $pagina = "model/alunos/delete.php";
                     }else if ($_GET['f'] == "all") {
-                        $pagina = "alunos/all.php";
+                        $pagina = "model/alunos/all.php";
                     }else{
-                        $pagina = "alunos/index.php";
+                        $pagina = "model/alunos/index.php";
                     }
                 }
         
                 if (isset($_GET['i']) and $_GET['i'] == "disciplinas") {
                     if ($_GET['f'] == "create") {
-                        $pagina = "disciplinas/create.php";
+                        $pagina = "model/disciplinas/create.php";
                     }else if ($_GET['f'] == "read") {
-                        $pagina = "disciplinas/read.php";
+                        $pagina = "model/disciplinas/read.php";
                     }else if ($_GET['f'] == "update") {
-                        $pagina = "disciplinas/update.php";
+                        $pagina = "model/disciplinas/update.php";
                     }else if ($_GET['f'] == "delete") {
-                        $pagina = "disciplinas/delete.php";
+                        $pagina = "model/disciplinas/delete.php";
                     }else if ($_GET['f'] == "all") {
-                        $pagina = "disciplinas/all.php";
+                        $pagina = "model/disciplinas/all.php";
                     }else{
-                        $pagina = "disciplinas/index.php";
+                        $pagina = "model/disciplinas/index.php";
                     }
                 }
 
 		if (isset($_GET['i']) and $_GET['i'] == "cursos") {
                     if ($_GET['f'] == "create") {
-                        $pagina = "cursos/create.php";
+                        $pagina = "model/cursos/create.php";
                     }else if ($_GET['f'] == "read") {
-                        $pagina = "cursos/read.php";
+                        $pagina = "model/cursos/read.php";
                     }else if ($_GET['f'] == "update") {
-                        $pagina = "cursos/update.php";
+                        $pagina = "model/cursos/update.php";
                     }else if ($_GET['f'] == "delete") {
-                        $pagina = "cursos/delete.php";
+                        $pagina = "model/cursos/delete.php";
                     }else if ($_GET['f'] == "all") {
-                        $pagina = "cursos/all.php";
+                        $pagina = "model/cursos/all.php";
                     }else{
-                        $pagina = "cursos/index.php";
+                        $pagina = "model/cursos/index.php";
                     }
                 }
 
 
                 if (isset($_GET['i']) and $_GET['i'] == "relatorios") {
                     if ($_GET['f'] == "turmas") {
-                        $pagina = "relatorios/turmas.php";
+                        $pagina = "model/relatorios/turmas.php";
                     }else if ($_GET['f'] == "boletim") {
-                        $pagina = "relatorios/boletim.php";
+                        $pagina = "model/relatorios/boletim.php";
                     }else if ($_GET['f'] == "des_notas") {
-                        $pagina = "relatorios/des_notas.php";
+                        $pagina = "model/relatorios/des_notas.php";
                     }else if ($_GET['f'] == "des_media") {
-                        $pagina = "relatorios/des_media.php";
+                        $pagina = "model/relatorios/des_media.php";
                     }else{
-                        $pagina = "relatorios/index.php";
+                        $pagina = "model/relatorios/index.php";
                     }
                 }
             }
