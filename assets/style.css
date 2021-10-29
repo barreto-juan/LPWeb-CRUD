@@ -56,13 +56,13 @@ a, a:hover{
 }
 
 /******CLASSES ==> MAIN******/
-.main-alunos:hover, .main-disciplinas:hover, .main-cursos:hover, .main-relatorios:hover{
+.main-alunos:hover, .main-turmas:hover, .main-disciplinas:hover, .main-cursos:hover, .main-relatorios:hover{
     box-shadow: 4px 4px 10px #000;
     transition: all .4s;
 
 }
 
-.main-alunos, .main-disciplinas, .main-cursos, .main-relatorios{
+.main-alunos, .main-turmas, .main-disciplinas, .main-cursos, .main-relatorios{
     margin: 0;
     padding: 10px;
 
@@ -82,20 +82,20 @@ a, a:hover{
 }
 
 /******CLASSE ==> LOGO******/
-.logo-alunos img, .logo-disciplinas img, .logo-cursos img, .logo-relatorios img{
+.logo-alunos img, .logo-turmas img, .logo-disciplinas img, .logo-cursos img, .logo-relatorios img{
     width: 100px;
     height: 100px;
 }
 
 /******CLASSES ===> ALUNOS - DISCIPLINAS E RELATORIOS******/
-.alunos, .disciplinas, .cursos, .relatorios{
+.alunos, .turmas, .disciplinas, .cursos, .relatorios{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80vh;
 }
 
-.alunos ul, .disciplinas ul, .cursos ul{
+.alunos ul, .turmas ul, .disciplinas ul, .cursos ul{
     display: flex;
     flex-wrap: wrap;
 }
@@ -137,7 +137,7 @@ hr{
 }
 
 /******IDS => INPUT******/
-#id, #nome, #cpf, #semestre, #carga, #turma, #curso, #email, #telefone{
+#id, #nome, #cpf, #semestre, #carga, #turma, #curso, #email, #telefone, #ano, #totalAlunos{
     margin: 0;
     padding: 8px;
 
@@ -170,7 +170,7 @@ input[type="submit"]{
     outline: 0;
 }
 
-#id:hover, #nome:hover, #cpf:hover, #semestre:hover, #turma:hover, #curso:hover, #carga:hover, #email:hover, #telefone:hover, input[type="submit"]:hover{
+#id:hover, #nome:hover, #cpf:hover, #semestre:hover, #turma:hover, #curso:hover, #carga:hover, #email:hover, #telefone:hover, #ano:hover, #totalAlunos:hover, input[type="submit"]:hover{
     background-color: rgb(240, 240, 240);
 }
 

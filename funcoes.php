@@ -11,6 +11,8 @@ function organiza(){
                     $pagina = "model/alunos/index.php";
                 }else if ($_GET['i'] == "disciplinas") {
                     $pagina = "model/disciplinas/index.php";
+		}else if ($_GET['i'] == "turmas") {
+                    $pagina = "model/turmas/index.php";
                 }else if ($_GET['i'] == "relatorios") {
                     $pagina = "model/relatorios/index.php";
                 }else if ($_GET['i'] == "cursos") {
@@ -52,6 +54,23 @@ function organiza(){
                         $pagina = "model/disciplinas/index.php";
                     }
                 }
+
+		if (isset($_GET['i']) and $_GET['i'] == "turmas") {
+                    if ($_GET['f'] == "create") {
+                        $pagina = "model/turmas/create.php";
+                    }else if ($_GET['f'] == "read") {
+                        $pagina = "model/turmas/read.php";
+                    }else if ($_GET['f'] == "update") {
+                        $pagina = "model/turmas/update.php";
+                    }else if ($_GET['f'] == "delete") {
+                        $pagina = "model/turmas/delete.php";
+                    }else if ($_GET['f'] == "all") {
+                        $pagina = "model/turmas/all.php";
+                    }else{
+                        $pagina = "model/turmas/index.php";
+                    }
+                }
+
 
 		if (isset($_GET['i']) and $_GET['i'] == "cursos") {
                     if ($_GET['f'] == "create") {

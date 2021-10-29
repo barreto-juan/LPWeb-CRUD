@@ -10,6 +10,17 @@
     </div>
 
     <div class="a-content">
+        <a href="?i=turmas">
+            <div class="main-turmas">
+                <div class="logo-turmas">
+                    <img src="assets/img/class-icon.png" alt="alunos">
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="a-content">
         <a href="?i=disciplinas">
             <div class="main-disciplinas">
                 <div class="logo-disciplinas">

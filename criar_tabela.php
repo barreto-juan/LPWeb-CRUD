@@ -23,14 +23,14 @@
 */
 
     $sql .= "CREATE TABLE IF NOT EXISTS `disciplinas` (
-      `id` int(11) not null primary key auto_increment,
-      `id_curso` int(11),
+      `id` int(11) not null primary key auto_increment,"
+      //`id_curso` int(11),
+      ."
       `nome` varchar(255) not null,
       `semestre` int(11) not null,
       `ano` int(11) not null,
       `carga` int(11) not null,
 
-      foreign key(`id_curso`) references cursos(`id`)
     );";
 
 /*    
@@ -40,30 +40,40 @@
     (3, 2, \"Geografia\", 1, 2021, 120);";
  */
     
-    $sql .= "CREATE TABLE  IF NOT EXISTS `turmas` (
+    $sql .= "CREATE TABLE IF NOT EXISTS `turmas` (
       `id` int(11) not null primary key auto_increment,
       `id_curso` int(11) not null,
-      `turma` varchar(255) not null,
+      `nome` varchar(255) not null,
+      `ano` int(11) not null,
       `total_alunos` int(11) not null,
 
-      foreign key(`id_curso`) references cursos(`id`)
+      foreign key(`id_curso`) references cursos(`id`),
     );";
  /*   
     $sql .= "INSERT INTO turmas (`id`, `id_curso`, `turma`, `total_alunos`) VALUES
     (1, 4, \"3InfoB\", 30),
     (2, 4, \"3InfoA\", 30);";
   */
+
+    $sql .= "CREATE TABLE IF NOT EXISTS 'relacaoTurmaDisc' (
+	    'id' int(11) not null primary key auto_increment,
+	    'id_turma' int(11) not null,
+	    'id_disc' int(11) not null,
+	    
+	    foreign key(`id_turma`) references turmas(`id`),
+	    foreign key(`id_disc`) references disciplinas(`id`)
+    );";
     
     $sql .= "CREATE TABLE IF NOT EXISTS `alunos` (
-      `id` int(11) not null primary key auto_increment,
-      `id_curso` int(11),
+      `id` int(11) not null primary key auto_increment,"
+      //`id_curso` int(11),
+      ."
       `id_turma` int(11),
       `nome` varchar(255) not null,
       `cpf` varchar(20) not null,
       `email` varchar(255) not null,
       `telefone` varchar(20) not null,
 
-      foreign key(`id_curso`) references cursos(`id`),
       foreign key(`id_turma`) references turmas(`id`)
     );";
 
